@@ -1,15 +1,23 @@
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import praktikum.Bun;
 import praktikum.Burger;
 import praktikum.Ingredient;
 
+@RunWith(MockitoJUnitRunner.class)
 public class TestBurger {
     private Burger burger;
 
     @Mock
     private Ingredient ingredient;
+
+    @Mock
+    Bun bun;
 
     @Before
     public void initializeBurgerClass() {
@@ -38,5 +46,25 @@ public class TestBurger {
 
         Assert.assertEquals("Second", burger.ingredients.get(0).name);
         Assert.assertEquals("First", burger.ingredients.get(1).name);
+    }
+
+    @Test
+    public void testBurgerGetPriceMethod() {
+        burger.setBuns(bun);
+        Mockito.when(bun.getPrice()).thenReturn(4.5f);
+
+        burger.addIngredient(new Ingredient(null, "First", 11.5f));
+        burger.addIngredient(new Ingredient(null, "Second", 5.5f));
+
+        var expectedResult = (bun.getPrice() * 2) +
+                burger.ingredients.get(0).price +
+                burger.ingredients.get(1).price;
+
+        Assert.assertEquals(expectedResult, burger.getPrice(), 0.0);
+    }
+
+    @Test
+    public void testBurgerGetReceiptMethod() {
+
     }
 }
