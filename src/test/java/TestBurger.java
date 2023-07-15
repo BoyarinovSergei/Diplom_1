@@ -9,6 +9,9 @@ import praktikum.Bun;
 import praktikum.Burger;
 import praktikum.Ingredient;
 
+import static praktikum.IngredientType.FILLING;
+import static praktikum.IngredientType.SAUCE;
+
 @RunWith(MockitoJUnitRunner.class)
 public class TestBurger {
     private Burger burger;
@@ -65,6 +68,13 @@ public class TestBurger {
 
     @Test
     public void testBurgerGetReceiptMethod() {
+        burger.setBuns(bun);
+        Mockito.when(bun.getName()).thenReturn("new bun name");
 
+        burger.addIngredient(new Ingredient(SAUCE, "FirstIng", 11.5f));
+        burger.addIngredient(new Ingredient(FILLING, "SecondIng", 5.5f));
+        burger.getReceipt();
+
+        Mockito.verify(bun, Mockito.times(2)).getName();
     }
 }
