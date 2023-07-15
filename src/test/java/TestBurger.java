@@ -20,7 +20,7 @@ public class TestBurger {
     private Ingredient ingredient;
 
     @Mock
-    Bun bun;
+    private Bun bun;
 
     @Before
     public void initializeBurgerClass() {
