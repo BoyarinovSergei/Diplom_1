@@ -1,26 +1,34 @@
-import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import praktikum.Bun;
 
+import static org.junit.Assert.assertEquals;
+
+@RunWith(Parameterized.class)
 public class TestBun {
-    private static final String BUN_NAME = "Новая булочка";
-    private static final float BUN_PRICE = 12345.123f;
+    private final String name;
+    private final float price;
 
-    private static Bun bun;
+    public TestBun(String name, float price) {
+        this.name = name;
+        this.price = price;
+    }
 
-    @BeforeClass
-    public static void initializeBun() {
-        bun = new Bun(BUN_NAME, BUN_PRICE);
+    @Parameterized.Parameters
+    public static Object[][] setOfTestData() {
+        return new Object[][]{
+                {"Флюоресцентная булка R2-D3", -10000f},
+                {"", 0f},
+                {null, 10000f},
+                {"N-200i", 1f}
+        };
     }
 
     @Test
-    public void testBunGetNameMethod() {
-        Assert.assertEquals(BUN_NAME, bun.getName());
-    }
-
-    @Test
-    public void testBunGetPriceMethod() {
-        Assert.assertEquals(BUN_PRICE, bun.getPrice(), 0.0);
+    public void returnActualNameAndPrice() {
+        Bun bun = new Bun(name, price);
+        assertEquals(name, bun.getName());
+        assertEquals(price, bun.getPrice(), 0);
     }
 }

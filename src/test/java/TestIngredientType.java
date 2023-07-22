@@ -13,7 +13,7 @@ public class TestIngredientType {
     }
 
     @Parameterized.Parameters
-    public static Object[] getSumData() {
+    public static Object[] setOfTestData() {
         return new Object[]{
                 "SAUCE", "FILLING"
         };

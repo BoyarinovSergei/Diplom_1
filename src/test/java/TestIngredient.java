@@ -1,8 +1,8 @@
-import org.junit.Assert;
 import org.junit.Test;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import static org.junit.Assert.assertEquals;
 import static praktikum.IngredientType.SAUCE;
 
 public class TestIngredient {
@@ -14,16 +14,16 @@ public class TestIngredient {
 
     @Test
     public void testIngredientGetPriceMethod() {
-        Assert.assertEquals(INGREDIENT_PRICE, INGREDIENT.getPrice(), 0.0);
+        assertEquals(INGREDIENT_PRICE, INGREDIENT.getPrice(), 0.0);
     }
 
     @Test
     public void testIngredientGetNameMethod() {
-        Assert.assertEquals(INGREDIENT_NAME, INGREDIENT.getName());
+        assertEquals(INGREDIENT_NAME, INGREDIENT.getName());
     }
 
     @Test
     public void testIngredientGetTypeMethod() {
-        Assert.assertEquals(INGREDIENT_TYPE, INGREDIENT.getType());
+        assertEquals(INGREDIENT_TYPE, INGREDIENT.getType());
     }
 }
